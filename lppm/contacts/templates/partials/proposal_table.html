@@ -1,0 +1,59 @@
+<tbody id="projectTable">
+    {% for project in projects %}
+    <tr>
+        <td>{{ project.name }}</td>
+        <td>{{ project.leader }}</td>
+        <td>{{ project.members }}</td>
+        <td>
+            <span class="badge 
+                {% if project.type == 'research' %}bg-success
+                {% elif project.type == 'development' %}bg-info
+                {% else %}bg-secondary
+                {% endif %}">
+                {{ project.get_type_display }}
+            </span>
+        </td>
+        <td>
+            {% if project.file %}
+            <a href="{{ project.file.url }}">Download</a>
+            {% else %}
+            No file
+            {% endif %}
+        </td>
+        <td>
+            <span class="badge status-badge
+                {% if project.status == 'pending' %}bg-warning
+                {% elif project.status == 'in_review' %}bg-primary
+                {% elif project.status == 'approved' %}bg-success
+                {% else %}bg-danger
+                {% endif %}">
+                {{ project.get_status_display }}
+            </span>
+        </td>
+        <td>
+            <button class="btn btn-sm btn-outline-primary action-btn" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#editModal"
+                    data-project-id="{{ project.id }}"
+                    data-project-name="{{ project.name }}"
+                    data-project-leader="{{ project.leader }}"
+                    data-project-members="{{ project.members }}"
+                    data-project-type="{{ project.type }}"
+                    data-project-status="{{ project.status }}">
+                Edit
+            </button>
+            <button class="btn btn-sm btn-outline-danger action-btn" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#deleteModal"
+                    data-project-id="{{ project.id }}"
+                    data-project-name="{{ project.name }}">
+                Delete
+            </button>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="7" class="text-center">No projects found</td>
+    </tr>
+    {% endfor %}
+</tbody>

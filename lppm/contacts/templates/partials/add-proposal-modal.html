@@ -1,0 +1,45 @@
+<dialog id="proposal_modal" class="modal">
+    <div class="modal-box">
+
+        <h3 class="text-lg font-bold">Submit Proposal Anda</h3>
+
+        <form hx-post="{% url 'create_contact' %}" hx-target="#contact-table-body" hx-swap="afterbegin" hx-on:success="proposal_modal.close(); this.reset();" class="modal-backdrop mb-4">
+            {% csrf_token %}
+
+            <div class="form-control w-full">
+                <label class="label">
+                <span class="label-text">Name</span>
+                </label>
+
+            {{ form.name }}
+
+            {% if form.name.errors %}
+                <label class="label text-error">
+                {{ form.name.errors}}
+                </label>
+            {% endif %}
+        
+            </div>
+
+            <div class="form-control w-full">
+                <label class="label">
+                <span class="label-text">Email</span>
+                </label>
+
+            {{ form.email }}
+
+            {% if form.email.errors %}
+                <label class="label text-error">
+                    {{ form.email.errors}}
+                </label>
+            {% endif %}
+        
+            </div>
+
+            <div class="modal-action">
+                <button type="button" class="btn" onclick="proposal_modal.close()">Cancel</button>
+                <button type="submit" class="btn">Add Contacts</button>
+            </div>
+        </form>
+    </div>
+</dialog>

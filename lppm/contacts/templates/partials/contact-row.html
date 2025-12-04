@@ -1,0 +1,11 @@
+<tr>
+    <td>{{ contact.name }}</td>
+    <td>{{ contact.email }}</td>
+    <td>{{ contact.created_at|date:"M d, Y" }}</td>
+    <td>
+        <button class="btn btn-xs btn-warning" hx-get="{% url 'edit_contact' contact.id %}" hx-target="#modal-container" hx-trigger="click">Edit</button>
+    </td>
+    <td>
+        <button class="btn btn-xs btn-error" hx-get="{% url 'delete_contact' contact.id %}" hx-target="#modal-container" hx-trigger="click">Delete</button>
+    </td>
+</tr>

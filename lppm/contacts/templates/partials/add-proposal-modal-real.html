@@ -1,0 +1,82 @@
+<dialog id="proposal_lppm_modal" class="modal">
+    <div class="modal-box">
+        <h3 class="text-lg font-bold">Submit New Proposal</h3>
+
+        <form hx-post="{% url 'project_create' %}" hx-target="#projectTable" hx-swap="outerHTML" 
+              hx-on:success="proposal_modal.close(); this.reset();" class="modal-backdrop mb-4" 
+              enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-control w-full mb-4">
+                <label class="label">
+                    <span class="label-text">Project Name</span>
+                </label>
+                {{ form.name }}
+
+                {% if form.name.errors %}
+                    <label class="label text-error">
+                        {{ form.name.errors }}
+                    </label>
+                {% endif %}
+            </div>
+
+            <div class="form-control w-full mb-4">
+                <label class="label">
+                    <span class="label-text">Project Leader</span>
+                </label>
+                {{ form.leader }}
+
+                {% if form.leader.errors %}
+                    <label class="label text-error">
+                        {{ form.leader.errors }}
+                    </label>
+                {% endif %}
+            </div>
+
+            <div class="form-control w-full mb-4">
+                <label class="label">
+                    <span class="label-text">Team Members</span>
+                </label>
+                {{ form.members }}
+                <div class="form-text">Separate names with commas</div>
+
+                {% if form.members.errors %}
+                    <label class="label text-error">
+                        {{ form.members.errors }}
+                    </label>
+                {% endif %}
+            </div>
+
+            <div class="form-control w-full mb-4">
+                <label class="label">
+                    <span class="label-text">Project Type</span>
+                </label>
+                {{ form.type }}
+
+                {% if form.type.errors %}
+                    <label class="label text-error">
+                        {{ form.type.errors }}
+                    </label>
+                {% endif %}
+            </div>
+
+            <div class="form-control w-full mb-4">
+                <label class="label">
+                    <span class="label-text">Project File</span>
+                </label>
+                {{ form.file }}
+
+                {% if form.file.errors %}
+                    <label class="label text-error">
+                        {{ form.file.errors }}
+                    </label>
+                {% endif %}
+            </div>
+
+            <div class="modal-action">
+                <button type="button" class="btn btn-secondary" onclick="proposal_modal.close()">Cancel</button>
+                <button type="submit" class="btn btn-primary">Submit Proposal</button>
+            </div>
+        </form>
+    </div>
+</dialog>

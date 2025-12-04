@@ -1,0 +1,56 @@
+{% extends "proposals/header.html" %}
+{% block content %}
+<h1><strong>Welcome to LPPM Penelitian!</strong></h1>
+
+<table>
+<tr>
+<td>
+<div class="card w-96 bg-base-100 card-xs shadow-sm">
+ <div class="card-body">
+    <h2 class="card-title">Total Proposals: </h2>
+    <h2>{{ total_proposals }}</h2>
+</td>
+<td>
+<div class="card bg-success w-96 bg-base-100 card-xs shadow-sm ">
+ <div class="card-body">
+    <h2 class="card-title">Proposals Approved: </h2>
+    <h2>{{ approved_proposals }}</h2>
+</td>
+<td>
+<div class="card bg-danger w-96 bg-base-100 card-xs shadow-sm">
+ <div class="card-body">
+    <h2 class="card-title">Proposals Rejected: </h2>
+    <h2>{{ rejected_proposals }}</h2>
+</td>
+<td>
+<div class="card bg-warning w-96 bg-base-100 card-xs shadow-sm">
+ <div class="card-body">
+    <h2 class="card-title">Proposals Pending: </h2>
+    <h2>{{ pending_proposals }}</h2>
+</td>
+</tr>
+
+<tr>
+<td></td>
+<td>
+<div class="card bg-warning w-96 bg-base-100 card-xs shadow-sm">
+ <div class="card-body">
+    <h2 class="card-title">Total Penelitian: </h2>
+    <h2>{{ total_penelitian }}</h2>
+</td>
+<td>
+<div class="card bg-warning w-96 bg-base-100 card-xs shadow-sm">
+ <div class="card-body">
+    <h2 class="card-title">Total PKM: </h2>
+    <h2>{{ total_pkm }}</h2>
+</td>
+<td></td>
+</tr>
+</table>
+</div>
+</div>
+<p>&nbsp</p>
+<a href="{% url 'proposal_list' %}" class="btn btn-sm btn-outline-secondary action-btn">
+    <i class="bi bi-eye me-1"></i>List Proposal
+</a>
+{% endblock %}
